@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\wr1nd\\source\\repos\\MathQuizApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D7527C6F-C871-45AA-8AA8-2DCBB86020D7}|MathQuizApp.csproj|c:\\users\\wr1nd\\source\\repos\\mathquizapp\\mathquizapp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7527C6F-C871-45AA-8AA8-2DCBB86020D7}|MathQuizApp.csproj|solutionrelative:mathquizapp.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D7527C6F-C871-45AA-8AA8-2DCBB86020D7}|MathQuizApp.csproj|c:\\users\\wr1nd\\source\\repos\\mathquizapp\\config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D7527C6F-C871-45AA-8AA8-2DCBB86020D7}|MathQuizApp.csproj|solutionrelative:config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "MathQuizApp.cs",
+              "DocumentMoniker": "C:\\Users\\wr1nd\\source\\repos\\MathQuizApp\\MathQuizApp.cs",
+              "RelativeDocumentMoniker": "MathQuizApp.cs",
+              "ToolTip": "C:\\Users\\wr1nd\\source\\repos\\MathQuizApp\\MathQuizApp.cs",
+              "RelativeToolTip": "MathQuizApp.cs",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAAwCUAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-12T06:05:06.186Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Config.cs",
+              "DocumentMoniker": "C:\\Users\\wr1nd\\source\\repos\\MathQuizApp\\Config.cs",
+              "RelativeDocumentMoniker": "Config.cs",
+              "ToolTip": "C:\\Users\\wr1nd\\source\\repos\\MathQuizApp\\Config.cs",
+              "RelativeToolTip": "Config.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-12T09:31:36.923Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
