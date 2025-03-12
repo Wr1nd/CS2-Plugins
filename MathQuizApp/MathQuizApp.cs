@@ -3,8 +3,6 @@ using CounterStrikeSharp.API.Core;
 using CounterStrikeSharp.API.Modules.Commands;
 using CounterStrikeSharp.API.Modules.Utils;
 using CounterStrikeSharp.API;
-using System;
-using System.IO;
 using System.Text.Json;
 
 namespace MathQuizApp
@@ -20,24 +18,37 @@ namespace MathQuizApp
         public int IntervalMin;
         public int IntervalMax;
         private Dictionary<string, int> DifficultyRewards = new();
+        public CounterStrikeSharp.API.Modules.Timers.Timer ChatTime;
 
 
         public override string ModuleName => "MathQuizApp";
         public override string ModuleAuthor => "Wr1nd";
         public override string ModuleVersion => "1.0.0";
 
+
         private readonly string _prefix = $"[ {ChatColors.DarkRed}ShmitzHakeriai {ChatColors.Default}]";
 
         public override void Load(bool hotReload)
         {
             _config = LoadConfig();
+            for (int i = 0; i < _config.Quizes.Math.Length; i++)
+            {
+                DifficultyRewards.Add(_config.Quizes.Math[i].Difficulty, _config.Quizes.Math[i].Reward);
+            }
             //get data from config
+            MaxTimeToAnswer = _config.MaxTimeToAnswer;
+
             StartChatTimer();
         }
 
         private void StartChatTimer()
         {
-            AddTimer(10.0f, () =>
+            IntervalMin = _config.IntervalMin;
+            IntervalMax = _config.IntervalMax;
+
+            int interval = _random.Next(IntervalMin, IntervalMax);
+
+            ChatTime = AddTimer(interval, () =>
             {
                 Server.NextFrame(() =>
                 {
@@ -57,32 +68,47 @@ namespace MathQuizApp
 
         private void StartActiveTimer()
         {
-            AddTimer(30.0f, () =>
+            AddTimer(MaxTimeToAnswer, () =>
             {
                 Server.NextFrame(() =>
                 {
-                    if (isActive)
-                    {
                         Server.PrintToChatAll(_prefix + "Quiz time has ended");
                         isActive = false;
-                    }
                 });
-                StartChatTimer();
             });
         }
 
         private string GenerateMathQuestion()
         {
-            Difficulty difficulty = (Difficulty)_random.Next(3);
-            string operatorSymbol = difficulty == Difficulty.Easy ? "+" : _random.Next(2) == 0 ? "-" : "*";
-            int num1 = _random.Next(1, 101);
-            int num2 = _random.Next(1, 101);
+            Difficulty difficulty = (Difficulty)_random.Next(3); ; 
+
+            string[] easyOps = { "+", "-" };
+            string[] mediumOps = { "+", "-", "/" };
+            string[] hardOps = { "%" }; 
+
+            string operatorSymbol = difficulty switch
+            {
+                Difficulty.Easy => easyOps[_random.Next(easyOps.Length)],
+                Difficulty.Medium => mediumOps[_random.Next(mediumOps.Length)],
+                Difficulty.Hard => hardOps[_random.Next(hardOps.Length)],
+                _ => "+"
+            };
+
+            int num1 = difficulty == Difficulty.Easy ? _random.Next(1, 51) : _random.Next(10, 101);
+            int num2 = difficulty == Difficulty.Easy ? _random.Next(1, 51) : _random.Next(10, 101);
 
             if (operatorSymbol == "/")
             {
-                num2 = _random.Next(1, 11); // Avoid zero, keep numbers small
-                while (num1 % num2 != 0) num1 = _random.Next(1, 101); // Ensure division results in an integer
+                num2 = _random.Next(2, 11); // Avoid zero and one
+                num1 = num2 * _random.Next(2, 10); 
             }
+            else if (operatorSymbol == "%")
+            {
+                num2 = _random.Next(6, 20); 
+                num1 = _random.Next(50, 101); 
+            }
+
+
 
             answer = CalculateAnswer(num1, num2, operatorSymbol);
             currentDiff = difficulty;
@@ -97,10 +123,11 @@ namespace MathQuizApp
                 "-" => num1 - num2,
                 "*" => num1 * num2,
                 "/" => num1 / num2,
+                "%" => num1 % num2, 
                 _ => throw new InvalidOperationException("Invalid operator")
             };
         }
-
+        
         [ConsoleCommand("css_ats")]
         public void OnAts(CCSPlayerController? player, CommandInfo info)
         {
@@ -118,9 +145,17 @@ namespace MathQuizApp
 
             if (playerAnswer == answer)
             {
+                ChatTime.Kill();
                 isActive = false;
-                Server.PrintToChatAll(_prefix + $" Player {player.PlayerName} answered correctly and got !");
+                int playerReward = 0;
+                if (DifficultyRewards.TryGetValue(currentDiff.ToString(), out int reward))
+                {
+                    playerReward = reward;
+                }
+                Server.PrintToChatAll(_prefix + $" Player {player.PlayerName} answered correctly!");
+                Server.PrintToChatAll(_prefix + $" Reward for completinting {currentDiff} level: {playerReward} jewels");
                 Server.PrintToChatAll(_prefix + " Quiz ended");
+                StartChatTimer();
             }
             else
             {

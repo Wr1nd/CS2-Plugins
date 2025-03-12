@@ -2524,23 +2524,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\wr1nd\\.nuget\\packages\\": {},
+    "C:\\Users\\Wr1nd\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\wr1nd\\source\\repos\\MathQuizApp\\MathQuizApp.csproj",
+      "projectUniqueName": "C:\\Users\\Wr1nd\\RiderProjects\\Programa2\\Programa2\\MathQuizApp\\MathQuizApp\\MathQuizApp.csproj",
       "projectName": "MathQuizApp",
-      "projectPath": "C:\\Users\\wr1nd\\source\\repos\\MathQuizApp\\MathQuizApp.csproj",
-      "packagesPath": "C:\\Users\\wr1nd\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\wr1nd\\source\\repos\\MathQuizApp\\obj\\",
+      "projectPath": "C:\\Users\\Wr1nd\\RiderProjects\\Programa2\\Programa2\\MathQuizApp\\MathQuizApp\\MathQuizApp.csproj",
+      "packagesPath": "C:\\Users\\Wr1nd\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Wr1nd\\RiderProjects\\Programa2\\Programa2\\MathQuizApp\\MathQuizApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\wr1nd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Wr1nd\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2566,8 +2566,7 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      },
-      "SdkAnalysisLevel": "9.0.100"
+      }
     },
     "frameworks": {
       "net8.0": {
@@ -2594,7 +2593,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.102/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

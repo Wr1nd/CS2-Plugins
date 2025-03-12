@@ -1,0 +1,21 @@
+{
+    "MaxTimeToAnswer": 30,
+    "IntervalMin": 3600,
+    "IntervalMax": 10080,
+    "Quizes": {
+        "Math": [
+            {
+                "Difficulty": "Easy",
+                "Reward": 10
+            },
+            {
+                "Difficulty": "Medium",
+                "Reward": 30
+            },
+            {
+                "Difficulty": "Hard",
+                "Reward": 50
+            }
+        ]
+    }
+}

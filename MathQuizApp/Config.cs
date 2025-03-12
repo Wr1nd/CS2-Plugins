@@ -8,7 +8,9 @@ namespace MathQuizApp
         private Config CreateConfig(string configPath)
         {
             Config config = new();
-            File.WriteAllText(configPath, JsonSerializer.Serialize(config, new JsonSerializerOptions { WriteIndented = true }));
+
+            File.WriteAllText(configPath,
+                JsonSerializer.Serialize(new Config(), new JsonSerializerOptions { WriteIndented = true }));
 
             return config;
         }
@@ -19,18 +21,6 @@ namespace MathQuizApp
             if (!File.Exists(configPath)) return CreateConfig(configPath);
 
             var config = JsonSerializer.Deserialize<Config>(File.ReadAllText(configPath))!;
-
-            // Assign values from config to class fields
-            MaxTimeToAnswer = config.MaxTimeToAnswer;
-            IntervalMin = config.IntervalMin;
-            IntervalMax = config.IntervalMax;
-
-            // Store rewards for each difficulty
-            DifficultyRewards.Clear();
-            foreach (var math in config.Quizes.Math)
-            {
-                DifficultyRewards[math.Difficulty] = math.Reward;
-            }
 
             return config;
         }
