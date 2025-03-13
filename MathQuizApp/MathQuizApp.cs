@@ -146,7 +146,7 @@ namespace MathQuizApp
         {
             if (!isActiveQuiz)
             {
-                Server.PrintToChatAll(_prefix + " There is no ongoing QUIZ");
+                player.PrintToChat(_prefix + " There is no ongoing QUIZ");
                 return;
             }
 
@@ -197,7 +197,7 @@ namespace MathQuizApp
                     {
                         if (player != null && IsPlayerPlaying(player) && isActiveQuiz)
                         {
-                            player.PrintToCenterAlert(equation + "\n To asnwer type !ats (answer)");
+                            player.PrintToCenterAlert(equation + "\n To asnwer type !ats answer");
                         }
                         else
                         {
