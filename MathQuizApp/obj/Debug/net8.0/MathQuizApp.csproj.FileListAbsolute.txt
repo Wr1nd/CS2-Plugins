@@ -23,3 +23,16 @@ C:\Users\Wr1nd\RiderProjects\Programa2\Programa2\MathQuizApp\MathQuizApp\obj\Deb
 C:\Users\Wr1nd\RiderProjects\Programa2\Programa2\MathQuizApp\MathQuizApp\obj\Debug\net8.0\refint\MathQuizApp.dll
 C:\Users\Wr1nd\RiderProjects\Programa2\Programa2\MathQuizApp\MathQuizApp\obj\Debug\net8.0\MathQuizApp.pdb
 C:\Users\Wr1nd\RiderProjects\Programa2\Programa2\MathQuizApp\MathQuizApp\obj\Debug\net8.0\ref\MathQuizApp.dll
+C:\Users\wr1nd\Documents\GitHub\MathQuizApp\MathQuizApp\bin\Debug\net8.0\MathQuizApp.deps.json
+C:\Users\wr1nd\Documents\GitHub\MathQuizApp\MathQuizApp\bin\Debug\net8.0\MathQuizApp.dll
+C:\Users\wr1nd\Documents\GitHub\MathQuizApp\MathQuizApp\bin\Debug\net8.0\MathQuizApp.pdb
+C:\Users\wr1nd\Documents\GitHub\MathQuizApp\MathQuizApp\obj\Debug\net8.0\MathQuizApp.csproj.AssemblyReference.cache
+C:\Users\wr1nd\Documents\GitHub\MathQuizApp\MathQuizApp\obj\Debug\net8.0\MathQuizApp.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\wr1nd\Documents\GitHub\MathQuizApp\MathQuizApp\obj\Debug\net8.0\MathQuizApp.AssemblyInfoInputs.cache
+C:\Users\wr1nd\Documents\GitHub\MathQuizApp\MathQuizApp\obj\Debug\net8.0\MathQuizApp.AssemblyInfo.cs
+C:\Users\wr1nd\Documents\GitHub\MathQuizApp\MathQuizApp\obj\Debug\net8.0\MathQuizApp.csproj.CoreCompileInputs.cache
+C:\Users\wr1nd\Documents\GitHub\MathQuizApp\MathQuizApp\obj\Debug\net8.0\MathQuizApp.sourcelink.json
+C:\Users\wr1nd\Documents\GitHub\MathQuizApp\MathQuizApp\obj\Debug\net8.0\MathQuizApp.dll
+C:\Users\wr1nd\Documents\GitHub\MathQuizApp\MathQuizApp\obj\Debug\net8.0\refint\MathQuizApp.dll
+C:\Users\wr1nd\Documents\GitHub\MathQuizApp\MathQuizApp\obj\Debug\net8.0\MathQuizApp.pdb
+C:\Users\wr1nd\Documents\GitHub\MathQuizApp\MathQuizApp\obj\Debug\net8.0\ref\MathQuizApp.dll

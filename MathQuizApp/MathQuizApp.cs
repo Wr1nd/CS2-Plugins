@@ -2,22 +2,33 @@
 using CounterStrikeSharp.API.Core;
 using CounterStrikeSharp.API.Modules.Commands;
 using CounterStrikeSharp.API.Modules.Utils;
+using CounterStrikeSharp.API.Modules.Entities;
 using CounterStrikeSharp.API;
 using System.Text.Json;
+using Microsoft.Extensions.Logging;
+using CounterStrikeSharp.API.Modules.Menu;
 
 namespace MathQuizApp
 {
     public partial class MathQuizApp : BasePlugin
     {
-        public bool isActive = false;
+        public bool isActiveQuiz = false;
+        public string equation = "";
         public int answer = 0;
         public Difficulty currentDiff;
+
+
+
         private Config _config = new();
         private readonly Random _random = new();
+
         public int MaxTimeToAnswer;
         public int IntervalMin;
         public int IntervalMax;
+
+        public List<CCSPlayerController> playersToRemove = new();
         private Dictionary<string, int> DifficultyRewards = new();
+        public List<CCSPlayerController> players = new();
         public CounterStrikeSharp.API.Modules.Timers.Timer ChatTime;
 
 
@@ -31,17 +42,17 @@ namespace MathQuizApp
         public override void Load(bool hotReload)
         {
             _config = LoadConfig();
-            for (int i = 0; i < _config.Quizes.Math.Length; i++)
+            for (int i = 0; i < _config.Quizes.Math.Count; i++)
             {
                 DifficultyRewards.Add(_config.Quizes.Math[i].Difficulty, _config.Quizes.Math[i].Reward);
             }
             //get data from config
             MaxTimeToAnswer = _config.MaxTimeToAnswer;
 
-            StartChatTimer();
+            StartQuizTimeoutTimer();
         }
 
-        private void StartChatTimer()
+        private void StartQuizTimeoutTimer()
         {
             IntervalMin = _config.IntervalMin;
             IntervalMax = _config.IntervalMax;
@@ -52,28 +63,29 @@ namespace MathQuizApp
             {
                 Server.NextFrame(() =>
                 {
-                    Server.PrintToChatAll(_prefix + " " + GenerateEquation());
+                    ShowQuizOn(GenerateEquation());
                 });
             });
         }
 
         private string GenerateEquation()
         {
-            isActive = true;
-            StartActiveTimer();
+            isActiveQuiz = true;
+            StartQuizTimer();
             string equation = GenerateMathQuestion();
 
             return equation;
         }
 
-        private void StartActiveTimer()
+        private void StartQuizTimer()
         {
             AddTimer(MaxTimeToAnswer, () =>
             {
                 Server.NextFrame(() =>
                 {
                         Server.PrintToChatAll(_prefix + "Quiz time has ended");
-                        isActive = false;
+                    isActiveQuiz = false;
+                    StartQuizTimeoutTimer();
                 });
             });
         }
@@ -112,7 +124,8 @@ namespace MathQuizApp
 
             answer = CalculateAnswer(num1, num2, operatorSymbol);
             currentDiff = difficulty;
-            return $"{num1} {operatorSymbol} {num2}";
+            equation = $"{num1} {operatorSymbol} {num2} = ?";
+            return equation;
         }
 
         private int CalculateAnswer(int num1, int num2, string operatorSymbol)
@@ -131,7 +144,7 @@ namespace MathQuizApp
         [ConsoleCommand("css_ats")]
         public void OnAts(CCSPlayerController? player, CommandInfo info)
         {
-            if (!isActive)
+            if (!isActiveQuiz)
             {
                 Server.PrintToChatAll(_prefix + " There is no ongoing QUIZ");
                 return;
@@ -146,7 +159,7 @@ namespace MathQuizApp
             if (playerAnswer == answer)
             {
                 ChatTime.Kill();
-                isActive = false;
+                isActiveQuiz = false;
                 int playerReward = 0;
                 if (DifficultyRewards.TryGetValue(currentDiff.ToString(), out int reward))
                 {
@@ -155,7 +168,9 @@ namespace MathQuizApp
                 Server.PrintToChatAll(_prefix + $" Player {player.PlayerName} answered correctly!");
                 Server.PrintToChatAll(_prefix + $" Reward for completinting {currentDiff} level: {playerReward} jewels");
                 Server.PrintToChatAll(_prefix + " Quiz ended");
-                StartChatTimer();
+
+                StartQuizTimeoutTimer();
+
             }
             else
             {
@@ -163,14 +178,52 @@ namespace MathQuizApp
             }
         }
 
-        [ConsoleCommand("css_config")]
-        public void OnConfig(CCSPlayerController? player, CommandInfo info)
+
+        private void ShowQuizOn(string equation)
         {
-            string configText = JsonSerializer.Serialize(_config, new JsonSerializerOptions { WriteIndented = true });
-            foreach (string line in configText.Split('\n'))
+            if (!isActiveQuiz) return;
+
+            players = GetPlayingPlayers();
+
+            RegisterListener<Listeners.OnTick>(() =>
             {
-                Server.PrintToChatAll(_prefix + " " + line);
-            }
+                if (!isActiveQuiz || players == null || players.Count == 0) return;
+
+                playersToRemove = new List<CCSPlayerController>();
+
+                foreach (var player in players)
+                {
+                    try
+                    {
+                        if (player != null && IsPlayerPlaying(player) && isActiveQuiz)
+                        {
+                            player.PrintToCenterAlert(equation + "\n To asnwer type !ats (answer)");
+                        }
+                        else
+                        {
+                            playersToRemove.Add(player!);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.LogError($"ShowQuizOn OnTick: {e}");
+                    }
+
+                    playersToRemove.ForEach(p => players.Remove(p));
+
+                }
+
+            });
+        }
+
+        public static bool IsPlayerPlaying(CCSPlayerController? player)
+        {
+            return player is { IsValid: true, Connected: PlayerConnectedState.PlayerConnected, TeamNum: 2 or 3, IsBot: false, IsHLTV: false };
+        }
+
+        private List<CCSPlayerController> GetPlayingPlayers()
+        {
+            return Utilities.GetPlayers().Where(IsPlayerPlaying).ToList();
         }
 
         public enum Difficulty { Easy, Medium, Hard }

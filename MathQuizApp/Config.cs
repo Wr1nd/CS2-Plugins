@@ -35,7 +35,7 @@ namespace MathQuizApp
 
         public class Quizes
         {
-            public Math[] Math { get; set; } = Array.Empty<Math>();
+            public List<Math> Math { get; set; } = new();
         }
 
         public class Math
