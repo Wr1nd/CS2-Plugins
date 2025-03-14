@@ -96,6 +96,8 @@ builds
 *.pidb
 *.svclog
 *.scc
+*.vsidx
+
 
 # Chutzpah Test files
 _Chutzpah*
