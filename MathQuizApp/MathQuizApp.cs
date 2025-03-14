@@ -108,17 +108,17 @@ namespace MathQuizApp
 
             int num1 = difficulty switch
             {
-                Difficulty.Easy => _random.Next(_config.Quizes.Math[0].MinNumber, _config.Quizes.Math[0].MinNumber),
-                Difficulty.Medium => _random.Next(_config.Quizes.Math[1].MinNumber, _config.Quizes.Math[1].MinNumber),
-                Difficulty.Hard => _random.Next(_config.Quizes.Math[2].MinNumber, _config.Quizes.Math[2].MinNumber),
+                Difficulty.Easy => _random.Next(_config.Quizes.Math[0].MinNumber, _config.Quizes.Math[0].MaxNumber),
+                Difficulty.Medium => _random.Next(_config.Quizes.Math[1].MinNumber, _config.Quizes.Math[1].MaxNumber),
+                Difficulty.Hard => _random.Next(_config.Quizes.Math[2].MinNumber, _config.Quizes.Math[2].MaxNumber),
                 _ => 0
             };
 
             int num2 = difficulty switch
             {
-                Difficulty.Easy => _random.Next(_config.Quizes.Math[0].MinNumber, _config.Quizes.Math[0].MinNumber),
-                Difficulty.Medium => _random.Next(_config.Quizes.Math[1].MinNumber, _config.Quizes.Math[1].MinNumber),
-                Difficulty.Hard => _random.Next(_config.Quizes.Math[2].MinNumber, _config.Quizes.Math[2].MinNumber),
+                Difficulty.Easy => _random.Next(_config.Quizes.Math[0].MinNumber, _config.Quizes.Math[0].MaxNumber),
+                Difficulty.Medium => _random.Next(_config.Quizes.Math[1].MinNumber, _config.Quizes.Math[1].MaxNumber),
+                Difficulty.Hard => _random.Next(_config.Quizes.Math[2].MinNumber, _config.Quizes.Math[2].MaxNumber),
                 _ => 0
             };
 
