@@ -96,7 +96,7 @@ namespace MathQuizApp
 
             string[] easyOps = { "+", "-" };
             string[] mediumOps = { "+", "-", "/" };
-            string[] hardOps = { "%" }; 
+            string[] hardOps = { "%", "*" }; 
 
             string operatorSymbol = difficulty switch
             {
@@ -106,18 +106,26 @@ namespace MathQuizApp
                 _ => "+"
             };
 
-            int num1 = difficulty == Difficulty.Easy ? _random.Next(1, 51) : _random.Next(10, 101);
-            int num2 = difficulty == Difficulty.Easy ? _random.Next(1, 51) : _random.Next(10, 101);
+            int num1 = difficulty switch
+            {
+                Difficulty.Easy => _random.Next(_config.Quizes.Math[0].MinNumber, _config.Quizes.Math[0].MinNumber),
+                Difficulty.Medium => _random.Next(_config.Quizes.Math[1].MinNumber, _config.Quizes.Math[1].MinNumber),
+                Difficulty.Hard => _random.Next(_config.Quizes.Math[2].MinNumber, _config.Quizes.Math[2].MinNumber),
+                _ => 0
+            };
+
+            int num2 = difficulty switch
+            {
+                Difficulty.Easy => _random.Next(_config.Quizes.Math[0].MinNumber, _config.Quizes.Math[0].MinNumber),
+                Difficulty.Medium => _random.Next(_config.Quizes.Math[1].MinNumber, _config.Quizes.Math[1].MinNumber),
+                Difficulty.Hard => _random.Next(_config.Quizes.Math[2].MinNumber, _config.Quizes.Math[2].MinNumber),
+                _ => 0
+            };
 
             if (operatorSymbol == "/")
             {
                 num2 = _random.Next(2, 11); // Avoid zero and one
                 num1 = num2 * _random.Next(2, 10); 
-            }
-            else if (operatorSymbol == "%")
-            {
-                num2 = _random.Next(6, 20); 
-                num1 = _random.Next(50, 101); 
             }
 
 
@@ -160,14 +168,15 @@ namespace MathQuizApp
             {
                 ChatTime.Kill();
                 isActiveQuiz = false;
-                int playerReward = 0;
+                int rewardAmount = 0;
                 if (DifficultyRewards.TryGetValue(currentDiff.ToString(), out int reward))
                 {
-                    playerReward = reward;
+                    rewardAmount = reward;
                 }
                 Server.PrintToChatAll(_prefix + $" Player {player.PlayerName} answered correctly!");
-                Server.PrintToChatAll(_prefix + $" Reward for completinting {currentDiff} level: {playerReward} jewels");
+                Server.PrintToChatAll(_prefix + $" Reward for completinting {currentDiff} level: {rewardAmount} jewels");
                 Server.PrintToChatAll(_prefix + " Quiz ended");
+                Server.ExecuteCommand($"css_addjewels {player.AuthorizedSteamID.SteamId64} {rewardAmount}");
 
                 StartQuizTimeoutTimer();
 

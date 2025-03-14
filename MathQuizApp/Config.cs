@@ -42,6 +42,8 @@ namespace MathQuizApp
         {
             public string Difficulty { get; set; } = "Easy";
             public int Reward { get; set; } = 0;
+            public int MinNumber { get; set; } = 1;
+            public int MaxNumber { get; set; } = 50;
         }
     }
 }
