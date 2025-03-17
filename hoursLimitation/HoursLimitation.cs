@@ -17,23 +17,34 @@ namespace hoursLimtation
 
         public override void Load(bool hotReload)
         {
-
             _config = LoadConfig();
 
-            RegisterEventHandler<EventPlayerConnectFull>((@event, info) =>
-            {
-                var player = @event.Userid;
-
-                int playTime = FetchCS2PlaytimeAsync(Convert.ToString(player.AuthorizedSteamID.SteamId64)).GetAwaiter().GetResult();
-                if (playTime < _config.MinHoursRequired)
-                {
-                    Server.ExecuteCommand($"kickid {@event.Userid.UserId} none");
-                }
-
-
-                return HookResult.Continue;
-            });
+            RegisterEventHandler<EventPlayerConnectFull>(OnPlayerConnect);
         }
+
+        private HookResult OnPlayerConnect(EventPlayerConnectFull @event, GameEventInfo info)
+        {
+            var player = @event.Userid;
+            string steamId = player.AuthorizedSteamID.SteamId64.ToString();
+            int userId = player.UserId ?? 0;
+            _ = HandlePlaytimeCheck(steamId, userId);
+            return HookResult.Continue;
+        }
+
+        private async Task HandlePlaytimeCheck(string steamId, int userId)
+        {
+            int playTime = await FetchCS2PlaytimeAsync(steamId);
+
+            if (playTime < _config.MinHoursRequired)
+            {
+                Server.NextFrame(() =>
+                {
+                    Server.ExecuteCommand($"kickid {userId} none");
+                });
+            }
+        }
+
+
 
 
     }
