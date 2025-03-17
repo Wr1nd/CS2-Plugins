@@ -1,0 +1,76 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Wr1nd\\RiderProjects\\Programa2\\Programa2\\MathQuizApp\\hoursLimitation\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{987F294B-051B-410D-8D99-F65E66BE24BF}|hoursLimitation.csproj|c:\\users\\wr1nd\\riderprojects\\programa2\\programa2\\mathquizapp\\hourslimitation\\hourslimitation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{987F294B-051B-410D-8D99-F65E66BE24BF}|hoursLimitation.csproj|solutionrelative:hourslimitation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{987F294B-051B-410D-8D99-F65E66BE24BF}|hoursLimitation.csproj|c:\\users\\wr1nd\\riderprojects\\programa2\\programa2\\mathquizapp\\hourslimitation\\steamservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{987F294B-051B-410D-8D99-F65E66BE24BF}|hoursLimitation.csproj|solutionrelative:steamservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{987F294B-051B-410D-8D99-F65E66BE24BF}|hoursLimitation.csproj|c:\\users\\wr1nd\\riderprojects\\programa2\\programa2\\mathquizapp\\hourslimitation\\config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{987F294B-051B-410D-8D99-F65E66BE24BF}|hoursLimitation.csproj|solutionrelative:config.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "SteamService.cs",
+              "DocumentMoniker": "C:\\Users\\Wr1nd\\RiderProjects\\Programa2\\Programa2\\MathQuizApp\\hoursLimitation\\SteamService.cs",
+              "RelativeDocumentMoniker": "SteamService.cs",
+              "ToolTip": "C:\\Users\\Wr1nd\\RiderProjects\\Programa2\\Programa2\\MathQuizApp\\hoursLimitation\\SteamService.cs",
+              "RelativeToolTip": "SteamService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T11:37:00.588Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Config.cs",
+              "DocumentMoniker": "C:\\Users\\Wr1nd\\RiderProjects\\Programa2\\Programa2\\MathQuizApp\\hoursLimitation\\Config.cs",
+              "RelativeDocumentMoniker": "Config.cs",
+              "ToolTip": "C:\\Users\\Wr1nd\\RiderProjects\\Programa2\\Programa2\\MathQuizApp\\hoursLimitation\\Config.cs",
+              "RelativeToolTip": "Config.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB8AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-17T11:36:59.786Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "HoursLimitation.cs",
+              "DocumentMoniker": "C:\\Users\\Wr1nd\\RiderProjects\\Programa2\\Programa2\\MathQuizApp\\hoursLimitation\\HoursLimitation.cs",
+              "RelativeDocumentMoniker": "HoursLimitation.cs",
+              "ToolTip": "C:\\Users\\Wr1nd\\RiderProjects\\Programa2\\Programa2\\MathQuizApp\\hoursLimitation\\HoursLimitation.cs",
+              "RelativeToolTip": "HoursLimitation.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-16T19:35:36.31Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
